@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: 'muni-the-goat', // 👈 Replace with your actual GitHub repo name
+  base: '/OCIC_Refreshment/', // 👈 Replace with your actual GitHub repo name
   plugins: [
     react(),
     tailwindcss(),
