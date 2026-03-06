@@ -4,7 +4,7 @@ import { Heart, Users, GraduationCap, TreePine, Building2, Handshake } from "luc
 
 // Placeholder images - replace with your actual CSR images
 import csrHeroImage from "../../assets/environment.webp";
-import communityImage from "../../assets/Koh-pich-running.jpg";
+import communityImage from "../../assets/Koh-pich-running.webp";
 import educationImage from "../../assets/CIS_Building.webp";
 import environmentImage from "../../assets/environment.webp";
 

@@ -8,10 +8,10 @@ import chairmanImg from "../../assets/About-Page/pung_kheav_se_ocic.jpg";
 
 // Timeline images
 import soriya from "../../assets/About-Page/soriya.png";
-import kohPichDev from "../../assets/About-Page/Koh-pich-dev.jpg";
+import kohPichDev from "../../assets/About-Page/Koh-pich-dev.webp";
 import cambodiaCulturalVilla from "../../assets/About-Page/Cambodia-Cultural-Villa.jpg";
-import ccvDroneShot from "../../assets/About-Page/CCV-drone-shot.jpg";
-import kohPichBg from "../../assets/About-Page/Koh-Pich-img.jpg";
+import ccvDroneShot from "../../assets/About-Page/CCV-drone-shot.webp";
+import kohPichBg from "../../assets/About-Page/Koh-Pich-img.webp";
 
 // Core value icons
 import trustIcon from "../../assets/About-Page/trust.png";

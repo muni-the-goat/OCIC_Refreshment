@@ -8,7 +8,7 @@ import intercare from "../../assets/intercare.jpg";
 import retail from "../../assets/soriya.png";
 import skyline from "../../assets/Sector_Hero.jpg";
 import agriculture from "../../assets/Agriculture.jpg";
-import distribution from "../../assets/dara-ventures.jpg"; 
+import distribution from "../../assets/dara-ventures.webp"; 
 import leisure from "../../assets/coconut-park.webp";
 import school from "../../assets/CIS_Building.webp";
 import elitetown from "../../assets/koh-pich-elite-town.jpeg";

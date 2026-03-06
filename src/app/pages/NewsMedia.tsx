@@ -6,8 +6,8 @@ import { Calendar, ArrowRight, Search } from "lucide-react";
 // Import news images
 import camtechGraduation from "../../assets/CamTech_Graduation_2025.jpg";
 import educationBoard from "../../assets/OCIC_Education_Board_Member.jpg";
-import noreaEzesoft from "../../assets/OCIC_Norea_Ezesoft_MoU.jpg";
-import communityImage from "../../assets/Koh-pich-running.jpg";
+import noreaEzesoft from "../../assets/OCIC_Norea_Ezesoft_MoU.webp";
+import communityImage from "../../assets/Koh-pich-running.webp";
 import cisBuilding from "../../assets/CIS_Building.webp";
 import environmentImage from "../../assets/environment.webp";
 
