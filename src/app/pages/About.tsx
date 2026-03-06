@@ -1,5 +1,6 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { AnimatedSection } from "../components/AnimatedSection";
+import { ArrowRight, Quote } from "lucide-react";
 
 // Hero & Chairman
 import canadiaTowerHeader from "../../assets/About-Page/canadia-tower-header.png";
@@ -86,152 +87,193 @@ const timeline = [
   },
 ];
 
-function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export default function About() {
-  return (
-    <div className="bg-white">
+  const { scrollYProgress } = useScroll();
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
 
-      {/* Hero Banner */}
-      <section className="relative overflow-hidden min-h-[320px] flex items-center bg-[#EEF3F8]">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-20 pointer-events-none"
-          style={{ backgroundImage: `url('${canadiaTowerHeader}')` }}
-        />
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-20 py-20 w-full text-center relative z-10">
-          <FadeUp>
-            <h1 className="text-5xl lg:text-6xl font-semibold text-[#212721]">About Us</h1>
-            <div className="mx-auto mt-4 w-16 h-[3px] rounded-full" style={{ backgroundColor: '#B14240' }} />
-          </FadeUp>
+  return (
+    <div className="bg-white font-montserrat">
+      {/* Hero Section - Full Screen Parallax */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <motion.div 
+          style={{ scale: heroScale, opacity: heroOpacity }}
+          className="absolute inset-0"
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url('${kohPichDev}')` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#212721]/70 via-[#212721]/50 to-[#212721]/80" />
+        </motion.div>
+
+        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "120px" }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="h-1 bg-[#B14240] mx-auto mb-8"
+            />
+            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              About OCIC
+            </h1>
+            <p className="text-lg lg:text-xl text-white/90 font-light tracking-wide">
+              Building Cambodia's Future, One Project at a Time
+            </p>
+          </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2"
+          >
+            <motion.div className="w-1.5 h-1.5 bg-white/70 rounded-full" />
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* Chairman Message */}
+      {/* Chairman Message - Magazine Layout */}
       <AnimatedSection>
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-[1440px] px-6 lg:px-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              <FadeUp>
-                <p className="text-sm font-semibold tracking-widest text-black/40 uppercase mb-4">A Message from our Chairman</p>
-                <h2 className="text-3xl lg:text-4xl font-semibold text-[#212721] mb-6 leading-snug">
-                  Lok Neak Oknha Dr. Pung Kheav Se
-                </h2>
-                <p className="text-base lg:text-lg text-black/60 leading-relaxed mb-8">
-                  OCIC provides leadership, development capability, funding and finance solutions across the project cycle to support property and infrastructure development that drives progress.
-                </p>
-                <motion.a
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  href="#"
-                  className="inline-block px-8 py-3 rounded-full text-white text-sm font-semibold"
-                  style={{ backgroundColor: '#B14240' }}
+        <section className="py-32 bg-[#F8F7F5]">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+              {/* Left: Large Number & Label */}
+              <div className="lg:col-span-3">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
                 >
-                  Read Our Chairman's Message
-                </motion.a>
-              </FadeUp>
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-                className="overflow-hidden rounded-2xl shadow-xl"
+                  <div className="text-[120px] lg:text-[140px] font-bold leading-none text-[#B14240]/10 mb-4">
+                    01
+                  </div>
+                  <div className="border-l-4 border-[#B14240] pl-6">
+                    <p className="text-xs tracking-[0.3em] text-black/40 uppercase mb-2">Leadership</p>
+                    <h3 className="text-2xl font-semibold text-[#212721]">Chairman's Vision</h3>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Middle: Image */}
+              <motion.div 
+                className="lg:col-span-4"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <img src={chairmanImg} alt="Chairman Pung Kheav Se" className="w-full h-[480px] object-cover" />
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-[#B14240] transform rotate-3 rounded-2xl transition-transform group-hover:rotate-6" />
+                  <img 
+                    src={chairmanImg} 
+                    alt="Chairman Pung Kheav Se" 
+                    className="relative rounded-2xl w-full h-[550px] object-cover shadow-2xl"
+                  />
+                  <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-6 rounded-xl">
+                    <p className="text-sm font-semibold text-[#B14240] mb-1">Chairman & Founder</p>
+                    <h4 className="text-xl font-bold text-[#212721]">
+                      Lok Neak Oknha Dr. Pung Kheav Se
+                    </h4>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Right: Content */}
+              <motion.div 
+                className="lg:col-span-5"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <div className="sticky top-32">
+                  <Quote size={40} className="text-[#B14240] mb-6" strokeWidth={1.5} />
+                  <p className="text-xl lg:text-2xl font-light text-[#212721] leading-relaxed mb-8 italic">
+                    "OCIC provides leadership, development capability, funding and finance solutions across the project cycle to support property and infrastructure development that drives progress."
+                  </p>
+                  <motion.a
+                    href="#"
+                    whileHover={{ x: 8 }}
+                    className="inline-flex items-center gap-3 text-base font-semibold text-[#B14240] group"
+                  >
+                    Read the Full Message
+                    <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+                  </motion.a>
+                </div>
               </motion.div>
             </div>
           </div>
         </section>
       </AnimatedSection>
 
-      {/* Quote + Vision / Mission / Who We Are */}
+      {/* Vision, Mission, Who We Are - Bold Typography */}
       <AnimatedSection>
-        <section className="py-20 lg:py-24 border-t border-black/5">
-          <div className="mx-auto max-w-[1440px] px-6 lg:px-20">
-            <FadeUp>
-              <p className="text-2xl lg:text-3xl font-semibold text-center text-[#212721] mb-16">
-                "We are an ambitious team with a simple purpose"
+        <section className="py-32 bg-white">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-20"
+            >
+              <p className="text-4xl lg:text-5xl font-bold text-[#212721] leading-tight mb-6">
+                We are an ambitious team<br />with a simple purpose
               </p>
-            </FadeUp>
-            <div className="space-y-10">
+            </motion.div>
+
+            <div className="space-y-24">
               {[
-                { label: "VISION", text: "To be Cambodia's developer and investor of choice, and a leader propelling the country and contributing to Cambodia's prominence in the region." },
-                { label: "MISSION", text: "To nurture the younger generation, by empowering them and providing the tools to invest in their personal growth with shared values, together for Cambodia." },
-                { label: "WHO WE ARE", text: "OCIC is one of Cambodia's leading diversified conglomerates. OCIC Group is a group of companies and businesses that are affiliated to OCIC and includes a business portfolio in property development, real estate, education, healthcare, airport, construction & engineering, retail, hospitality to media and leisure. OCIC's major developments include the Techo International Airport, Russey Keo Bridge, Koh Norea Bridge, Koh Pich, Norea City, Chroy Changvar Satellite City, Bassac Garden City, Chamkarmon City and Olympia City." },
+                { 
+                  label: "VISION", 
+                  text: "To be Cambodia's developer and investor of choice, and a leader propelling the country and contributing to Cambodia's prominence in the region.",
+                  color: "#B14240"
+                },
+                { 
+                  label: "MISSION", 
+                  text: "To nurture the younger generation, by empowering them and providing the tools to invest in their personal growth with shared values, together for Cambodia.",
+                  color: "#C8A84B"
+                },
+                { 
+                  label: "WHO WE ARE", 
+                  text: "We are the Overseas Cambodian Investment Corporation (OCIC), a leading conglomerate engaged in diverse infrastructure and business development across Cambodia and the region.",
+                  color: "#212721"
+                },
               ].map((item, i) => (
-                <FadeUp key={item.label} delay={i * 0.1}>
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8">
-                    <div className="lg:col-span-2">
-                      <span className="text-sm font-bold tracking-widest" style={{ color: '#B14240' }}>{item.label}</span>
-                    </div>
-                    <div className="lg:col-span-10">
-                      <p className="text-base text-black/70 leading-relaxed">{item.text}</p>
-                    </div>
-                  </div>
-                  <div className="mt-10 border-t border-black/5" />
-                </FadeUp>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* Unparalleled Opportunities */}
-      <AnimatedSection>
-        <section className="py-16 lg:py-20 bg-[#F5F3F3]">
-          <div className="mx-auto max-w-[1440px] px-6 lg:px-20">
-            <FadeUp>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
-                <h2 className="text-3xl lg:text-4xl font-semibold text-[#212721]">Unparalleled Opportunities</h2>
-                <p className="text-base text-black/60 leading-relaxed">
-                  Experience matters. Constantly innovating, at OCIC we are always seeking the most relevant and most innovative ways to partner with local and global businesses, entrepreneurs, corporations and governments to design, engineer, build, and deliver pioneering property and infrastructure projects.
-                </p>
-              </div>
-            </FadeUp>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* Core Values */}
-      <AnimatedSection>
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-[1440px] px-6 lg:px-20">
-            <FadeUp>
-              <div className="text-center mb-14">
-                <p className="text-sm font-semibold tracking-widest mb-2" style={{ color: '#B14240' }}>What drives us</p>
-                <h2 className="text-3xl lg:text-4xl font-semibold text-[#212721]">Our Core Values</h2>
-              </div>
-            </FadeUp>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {coreValues.map((value, i) => (
                 <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, y: 30 }}
+                  key={item.label}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, ease: "easeOut", delay: (i % 2) * 0.1 }}
-                  className="rounded-2xl border border-black/8 bg-[#F9F9F9] p-8"
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.7, delay: i * 0.15 }}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-black/10 pb-16"
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-full border border-black/10 flex items-center justify-center bg-white">
-                      <img src={value.icon} alt={value.title} className="w-9 h-9 object-contain" style={{ filter: 'invert(20%) sepia(90%) saturate(1200%) hue-rotate(340deg) brightness(80%)' }} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold" style={{ color: '#A42A28' }}>{value.title}</h3>
-                      <p className="text-sm text-black/40">{value.subtitle}</p>
-                    </div>
+                  <div className="lg:col-span-3">
+                    <h3 
+                      className="text-3xl lg:text-4xl font-bold tracking-tight"
+                      style={{ color: item.color }}
+                    >
+                      {item.label}
+                    </h3>
                   </div>
-                  <p className="text-sm text-black/60 leading-relaxed">{value.description}</p>
+                  <div className="lg:col-span-9">
+                    <p className="text-lg lg:text-xl font-light text-[#212721] leading-relaxed">
+                      {item.text}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -239,110 +281,220 @@ export default function About() {
         </section>
       </AnimatedSection>
 
-      {/* Timeline - Our Story */}
+      {/* Unparalleled Opportunities - Split Screen */}
       <AnimatedSection>
-        <section className="py-20 lg:py-28 border-t border-black/5">
-          <div className="mx-auto max-w-[1440px] px-6 lg:px-20">
-            <FadeUp>
-              <div className="text-center mb-16">
-                <p className="text-sm font-semibold tracking-widest mb-2" style={{ color: '#B14240' }}>Our Story</p>
-                <h2 className="text-3xl lg:text-4xl font-semibold text-[#212721]">Humble Beginnings</h2>
+        <section className="py-0 bg-[#212721]">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="p-12 lg:p-20 flex items-center"
+            >
+              <div>
+                <div className="w-20 h-1 bg-[#B14240] mb-8" />
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
+                  Unparalleled<br />Opportunities
+                </h2>
+                <p className="text-lg text-white/80 leading-relaxed">
+                  Experience matters. Constantly innovating, at OCIC we are always seeking the most relevant and most innovative ways to partner with local and global businesses, entrepreneurs, corporations and governments to design, engineer, build, and deliver pioneering property and infrastructure projects.
+                </p>
               </div>
-            </FadeUp>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative h-[500px] lg:h-auto"
+            >
+              <img 
+                src={canadiaTowerHeader} 
+                alt="OCIC Opportunities" 
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#212721] to-transparent" />
+            </motion.div>
+          </div>
+        </section>
+      </AnimatedSection>
 
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-[33%] top-0 bottom-0 w-[2px] bg-black/10 hidden lg:block" />
-
-              <div className="space-y-20">
-                {timeline.map((item) => (
-                  <motion.div
-                    key={item.year}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
-                  >
-                    <div className="lg:col-span-4 relative">
-                      <p className="text-xs font-bold tracking-widest text-black/30 uppercase mb-2">{item.label}</p>
-                      <div className="flex items-center">
-                        <span className="text-5xl lg:text-6xl font-bold" style={{ color: '#B14240' }}>{item.year}</span>
-                        <div className="hidden lg:block w-3 h-3 rounded-full bg-[#212721] ml-auto mr-[-6px] relative z-10 flex-shrink-0" />
-                      </div>
-                    </div>
-                    <div className="lg:col-span-8 lg:pl-8">
-                      <div className="overflow-hidden rounded-xl mb-4 border border-black/5">
-                        <img src={item.image} alt={item.year} className="w-full h-64 object-cover" />
-                      </div>
-                      <p className="text-base text-black/60 leading-relaxed">{item.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
+      {/* Core Values - Card Grid with Hover Effects */}
+      <AnimatedSection>
+        <section className="py-32 bg-white">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-20"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-1 bg-[#B14240]" />
+                <p className="text-sm font-bold tracking-[0.3em] text-[#B14240] uppercase">What Drives Us</p>
               </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#212721]">Our Core Values</h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {coreValues.map((value, i) => (
+                <motion.div
+                  key={value.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: i * 0.08 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group relative bg-gradient-to-br from-white to-[#F8F7F5] border border-black/10 rounded-2xl p-8 overflow-hidden cursor-pointer transition-shadow hover:shadow-2xl"
+                >
+                  {/* Hover Background Effect */}
+                  <div className="absolute inset-0 bg-[#B14240] opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
+                  
+                  {/* Icon */}
+                  <div className="relative mb-6">
+                    <div className="w-20 h-20 rounded-2xl bg-white border border-black/10 flex items-center justify-center group-hover:border-[#B14240] group-hover:bg-[#B14240]/5 transition-all">
+                      <img 
+                        src={value.icon} 
+                        alt={value.title} 
+                        className="w-12 h-12 object-contain transition-transform group-hover:scale-110"
+                        style={{ filter: 'invert(20%) sepia(90%) saturate(1200%) hue-rotate(340deg) brightness(80%)' }} 
+                      />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold text-[#212721] mb-2 group-hover:text-[#B14240] transition-colors">
+                    {value.title}
+                  </h3>
+                  <p className="text-sm font-semibold text-black/40 mb-4 uppercase tracking-wider">
+                    {value.subtitle}
+                  </p>
+                  <p className="text-base text-black/60 leading-relaxed">
+                    {value.description}
+                  </p>
+
+                  {/* Corner Accent */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#B14240]/5 rounded-bl-full transform translate-x-16 -translate-y-16 group-hover:translate-x-12 group-hover:-translate-y-12 transition-transform duration-500" />
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
       </AnimatedSection>
 
-      {/* CTA Banner */}
+      {/* Timeline - Horizontal Scroll Style */}
       <AnimatedSection>
-        <section className="relative overflow-hidden py-20 mx-6 lg:mx-20 rounded-2xl mb-20">
-          {/* Background image with zoom-in on scroll */}
-          <motion.div
-            initial={{ scale: 1.1 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('${kohPichBg}')` }}
-          />
-          {/* Red overlay fade in */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="absolute inset-0"
-            style={{ backgroundColor: 'rgba(164, 42, 40, 0.80)' }}
-          />
-          {/* Content */}
-          <div className="relative text-center px-6">
-            <motion.h2
+        <section className="py-32 bg-[#F8F7F5]">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-              className="text-3xl lg:text-4xl font-bold text-white mb-4"
+              viewport={{ once: true }}
+              className="mb-20"
             >
-              Building Cambodia Driving Development
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
-              className="text-base text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed"
-            >
-              Infrastructure is fundamental to progress. OCIC works across the spectrum of the property and infrastructure development process based on local market needs, catalysing private sector participation and creating development impact.
-            </motion.p>
-            <motion.a
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              href="#"
-              className="inline-block px-10 py-3 rounded-full font-semibold text-white"
-              style={{ backgroundColor: '#C8A84B' }}
-            >
-              Find out More
-            </motion.a>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-1 bg-[#C8A84B]" />
+                <p className="text-sm font-bold tracking-[0.3em] text-[#C8A84B] uppercase">Our Journey</p>
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#212721]">Humble Beginnings</h2>
+            </motion.div>
+
+            <div className="space-y-32">
+              {timeline.map((item, index) => (
+                <motion.div
+                  key={item.year}
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.8 }}
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                    index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                  }`}
+                >
+                  {/* Image Side */}
+                  <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                    <div className="relative group">
+                      <div className="absolute -inset-4 bg-[#B14240] opacity-10 rounded-3xl transform rotate-2 group-hover:rotate-3 transition-transform" />
+                      <img 
+                        src={item.image} 
+                        alt={item.year} 
+                        className="relative rounded-2xl w-full h-[400px] lg:h-[500px] object-cover shadow-xl"
+                      />
+                      {/* Year Badge */}
+                      <div className="absolute -top-6 -left-6 w-32 h-32 bg-[#B14240] rounded-full flex items-center justify-center shadow-2xl">
+                        <span className="text-4xl font-bold text-white">{item.year}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Side */}
+                  <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+                    <div className="lg:px-12">
+                      <p className="text-xs font-bold tracking-[0.3em] text-black/40 uppercase mb-4">
+                        {item.label}
+                      </p>
+                      <div className="w-16 h-1 bg-[#B14240] mb-6" />
+                      <p className="text-lg lg:text-xl font-light text-[#212721] leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       </AnimatedSection>
 
+      {/* CTA Banner - Full Width Immersive */}
+      <AnimatedSection>
+        <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
+          <motion.div
+            initial={{ scale: 1.2 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5 }}
+            className="absolute inset-0"
+          >
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url('${kohPichBg}')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#B14240]/90 via-[#B14240]/80 to-[#B14240]/70" />
+          </motion.div>
+
+          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="w-20 h-1 bg-white mx-auto mb-8" />
+              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                Building Cambodia<br />Driving Development
+              </h2>
+              <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-2xl mx-auto">
+                Infrastructure is fundamental to progress. OCIC works across the spectrum of the property and infrastructure development process based on local market needs, catalysing private sector participation and creating development impact.
+              </p>
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-3 px-10 py-4 rounded-full font-bold text-[#212721] bg-white hover:bg-[#C8A84B] hover:text-white transition-all text-base group"
+              >
+                Explore Our Impact
+                <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+              </motion.a>
+            </motion.div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute top-10 left-10 w-32 h-32 border border-white/20 rounded-full" />
+          <div className="absolute bottom-10 right-10 w-48 h-48 border border-white/20 rounded-full" />
+        </section>
+      </AnimatedSection>
     </div>
   );
 }
