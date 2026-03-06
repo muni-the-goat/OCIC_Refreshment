@@ -3,10 +3,10 @@ import { AnimatedSection } from "../components/AnimatedSection";
 import { Heart, Users, GraduationCap, TreePine, Building2, Handshake } from "lucide-react";
 
 // Placeholder images - replace with your actual CSR images
-import csrHeroImage from "../../assets/environment.jpg";
+import csrHeroImage from "../../assets/environment.webp";
 import communityImage from "../../assets/Koh-pich-running.jpg";
-import educationImage from "../../assets/CIS_Building.jpg";
-import environmentImage from "../../assets/environment.jpg";
+import educationImage from "../../assets/CIS_Building.webp";
+import environmentImage from "../../assets/environment.webp";
 
 // CSR initiatives data
 const csrPillars = [

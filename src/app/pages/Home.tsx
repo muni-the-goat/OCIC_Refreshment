@@ -1,18 +1,17 @@
 import { useState } from "react";
 import type React from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
-import TechoAirport from "../../assets/TIA_Sunset_V2.jpg";
+import TechoAirport from "../../assets/TIA_Sunset_V2.webp";
 import kohNoreaBridge from "../../assets/Koh_Norea_Bridge.jpg";
 import CIS from "../../assets/CIS.jpg";
 import construction from "../../assets/International_Construction.jpg";
 import hospitality from "../../assets/Dara_Hotel.avif";
-import environment from "../../assets/environment.jpg";
 import running from "../../assets/Koh-pich-running.jpg";
 import IndependenceHotel from "../../assets/independence-hotel.jpg";
-import airport from "../../assets/Airport.jpg";
+import airport from "../../assets/Airport.webp";
 import skyline from "../../assets/koh-pich-skyline.jpg";
-import Tower from "../../assets/cnd_tower.jpg";
-import norea from "../../assets/norea-bay-view.jpg";
+import Tower from "../../assets/cnd_tower.webp";
+import norea from "../../assets/norea-bay-view.webp";
 import IphoneMockup from "../../assets/Iphone-Mockup.png";
 
 import integrityIcon from "../../assets/icons/integrity.png";

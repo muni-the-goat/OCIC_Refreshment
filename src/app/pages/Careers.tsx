@@ -3,7 +3,7 @@ import { AnimatedSection } from "../components/AnimatedSection";
 import { Briefcase, Users, TrendingUp, Heart, GraduationCap, Globe, MapPin, Clock, ChevronRight } from "lucide-react";
 import hero from "../../assets/Facade-bg.jpg";
 import career from "../../assets/careers-with-us.jpg";
-import workculture from "../../assets/culture-w-us.jpg";
+import workculture from "../../assets/culture-w-us.webp";
 
 // Benefits data
 const benefits = [
