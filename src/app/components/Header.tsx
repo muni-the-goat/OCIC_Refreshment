@@ -8,8 +8,9 @@ const navItems = [
   { label: "About", to: "/about" },
   { label: "Sectors", to: "/sectors" },
   { label: "CSR", to: "/csr" },
-  { label: "News & Media", to: "/news-media" },
-  { label: "Careers", to: "/careers" },
+  { label: "Newsroom", to: "/news-media" },
+  { label: "Careers", to: "/Careers" },
+  { label: "Contact", to: "/Contact" },
 ];
 
 const sectorItems = [
@@ -41,17 +42,13 @@ export function Header() {
   }, []);
 
   const handleLogoClick = (e: React.MouseEvent) => {
-    if (location.pathname === "/") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    // Always scroll to top when clicking logo
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleNavClick = (to: string) => (e: React.MouseEvent) => {
-    if (location.pathname === to) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    // Always scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleSectorClick = (sectorId: string) => {
@@ -118,7 +115,7 @@ export function Header() {
                   onClick={handleNavClick(item.to)}
                   className={({ isActive }) =>
                     [
-                      "flex items-center gap-1 text-base font-semibold transition-all duration-200 hover:text-[#DAB428] relative group",
+                      "flex items-center gap-1 text-base font-medium transition-all duration-200 hover:text-[#DAB428] relative group",
                       isActive ? "text-[#A42A28]" : "text-gray-700",
                     ].join(" ")
                   }
@@ -175,7 +172,7 @@ export function Header() {
                 onClick={handleNavClick(item.to)}
                 className={({ isActive }) =>
                   [
-                    "text-base font-semibold transition-all duration-200 hover:text-[#DAB428] relative group",
+                    "text-base font-medium transition-all duration-200 hover:text-[#DAB428] relative group",
                     isActive ? "text-[#A42A28]" : "text-gray-700",
                   ].join(" ")
                 }
@@ -237,7 +234,7 @@ export function Header() {
                   <NavLink
                     to={item.to}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-3 text-base font-semibold text-gray-700 hover:bg-gradient-to-r hover:from-[#DAB428]/10 hover:to-transparent hover:text-[#A42A28] transition-all rounded-md"
+                    className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-[#DAB428]/10 hover:to-transparent hover:text-[#A42A28] transition-all rounded-md"
                   >
                     {item.label}
                   </NavLink>

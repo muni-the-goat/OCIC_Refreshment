@@ -6,12 +6,12 @@ import hospitality from "../../assets/Dara_Hotel.avif";
 import airportsunset from "../../assets/TIA_Sunset.jpg";
 import intercare from "../../assets/intercare.jpg";
 import retail from "../../assets/soriya.png";
-import skyline from "../../assets/Sector_Hero.jpg";
+import skyline from "../../assets/Sector_Hero.webp";
 import agriculture from "../../assets/Agriculture.jpg";
 import distribution from "../../assets/dara-ventures.webp"; 
 import leisure from "../../assets/coconut-park.webp";
 import school from "../../assets/CIS_Building.webp";
-import elitetown from "../../assets/koh-pich-elite-town.jpeg";
+import elitetown from "../../assets/koh-pich-elite-town.webp";
 import media from "../../assets/media.jpg";
 import propertydevelopment from "../../assets/koh-pich-skyline.jpg";
 import CCB from "../../assets/CCB.jpg";
@@ -314,29 +314,61 @@ export default function Sectors() {
         </div>
       </section>
 
-      {/* Quick Navigation */}
-      <section className="sticky top-16 z-40 bg-white border-b border-gray-200 shadow-sm">
+      {/* Quick Navigation - Redesigned */}
+      <section className="sticky top-16 z-40 bg-white shadow-lg">
+        {/* Gold accent line */}
+        <div className="h-1 bg-gradient-to-r from-[#A42A28] via-[#DAB428] to-[#A42A28]" />
+        
         <div className="max-w-[1400px] mx-auto px-6 lg:px-20">
           <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-2 py-4 min-w-max">
-              {sectors.map((sector) => (
-                <button
-                  key={sector.id}
-                  onClick={() => scrollToSection(sector.id)}
-                  className={`
-                    px-4 py-2 text-sm font-semibold transition-all whitespace-nowrap
-                    ${activeSection === sector.id 
-                      ? 'text-white' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}
-                  `}
-                  style={activeSection === sector.id ? { backgroundColor: '#A42A28' } : {}}
-                >
-                  {sector.name}
-                </button>
-              ))}
+            <div className="flex gap-3 py-5 min-w-max">
+              {sectors.map((sector) => {
+                const Icon = sector.icon;
+                return (
+                  <motion.button
+                    key={sector.id}
+                    onClick={() => scrollToSection(sector.id)}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`
+                      relative px-5 py-3 text-sm font-semibold transition-all whitespace-nowrap rounded-lg
+                      flex items-center gap-2 overflow-hidden
+                      ${activeSection === sector.id 
+                        ? 'text-white shadow-lg' 
+                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'}
+                    `}
+                    style={activeSection === sector.id ? { 
+                      backgroundColor: '#A42A28',
+                    } : {}}
+                  >
+                    {/* Active indicator gold line */}
+                    {activeSection === sector.id && (
+                      <motion.div
+                        layoutId="activeSection"
+                        className="absolute bottom-0 left-0 right-0 h-1"
+                        style={{ backgroundColor: '#DAB428' }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    
+                    {/* Icon */}
+                    <Icon 
+                      size={16} 
+                      className={activeSection === sector.id ? 'text-[#DAB428]' : 'text-gray-500'}
+                      strokeWidth={2.5}
+                    />
+                    
+                    {/* Text */}
+                    <span>{sector.name}</span>
+                  </motion.button>
+                );
+              })}
             </div>
           </div>
         </div>
+        
+        {/* Bottom border with subtle shadow */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
       </section>
 
       {/* Sectors Content */}

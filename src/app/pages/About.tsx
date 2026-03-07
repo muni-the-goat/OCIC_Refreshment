@@ -239,17 +239,17 @@ export default function About() {
               {[
                 { 
                   label: "VISION", 
-                  text: "To be Cambodia's developer and investor of choice, and a leader propelling the country and contributing to Cambodia's prominence in the region.",
+                  text: "To contribute to Cambodia's transformation into a global economy through value-creation for stakeholders, innovative infrastructure and strategic partnerships.",
                   color: "#B14240"
                 },
                 { 
                   label: "MISSION", 
-                  text: "To nurture the younger generation, by empowering them and providing the tools to invest in their personal growth with shared values, together for Cambodia.",
+                  text: "To contribute to Cambodia's development and growth within ASEAN by building opportunities for Cambodians, particularly younger generations, through strategic investments.",
                   color: "#C8A84B"
                 },
                 { 
-                  label: "WHO WE ARE", 
-                  text: "We are the Overseas Cambodian Investment Corporation (OCIC), a leading conglomerate engaged in diverse infrastructure and business development across Cambodia and the region.",
+                  label: "VALUES", 
+                  text: "We are driven by innovation and an entrepreneurial spirit, with trust and respect as our core values.",
                   color: "#212721"
                 },
               ].map((item, i) => (

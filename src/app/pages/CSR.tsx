@@ -3,10 +3,11 @@ import { AnimatedSection } from "../components/AnimatedSection";
 import { Heart, Users, GraduationCap, TreePine, Building2, Handshake } from "lucide-react";
 
 // Placeholder images - replace with your actual CSR images
-import csrHeroImage from "../../assets/environment.webp";
+import csrHeroImage from "../../assets/OCIC_IDP_Community_Outreach.webp";
 import communityImage from "../../assets/Koh-pich-running.webp";
 import educationImage from "../../assets/CIS_Building.webp";
 import environmentImage from "../../assets/environment.webp";
+import schoolevent from "../../assets/OCIC_KPCC_Rabbit_School_Group_Photo.jpg";
 
 // CSR initiatives data
 const csrPillars = [
@@ -107,79 +108,199 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function CSR() {
   return (
-    <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-[480px] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${csrHeroImage}')` }}
+    <div className="bg-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+      {/* Hero Section - Redesigned */}
+      <section className="relative overflow-hidden h-screen flex items-center">
+        {/* Background with parallax effect */}
+        <motion.div
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0"
         >
-          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(25, 26, 25, 0.7)' }} />
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url('${csrHeroImage}')` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
+        </motion.div>
+        
+        {/* Decorative Gold Elements */}
+        <div className="absolute top-0 left-0 w-32 h-32">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#DAB428] to-transparent" />
+          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#DAB428] to-transparent" />
+        </div>
+        <div className="absolute bottom-0 right-0 w-32 h-32">
+          <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-[#DAB428] to-transparent" />
+          <div className="absolute bottom-0 right-0 w-1 h-full bg-gradient-to-t from-[#DAB428] to-transparent" />
         </div>
         
-        <div className="relative z-10 mx-auto max-w-[1440px] px-6 lg:px-20 py-20 w-full">
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-20 py-20 w-full">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <p className="text-sm font-semibold tracking-widest text-white/80 uppercase mb-4">
+            {/* Gold animated line */}
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: '80px' }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="h-1 mb-6"
+              style={{ backgroundColor: '#DAB428' }}
+            />
+            
+            <p className="text-sm font-semibold tracking-widest text-[#DAB428] uppercase mb-6">
               Corporate Social Responsibility
             </p>
-            <h1 className="text-5xl lg:text-6xl font-semibold text-white mb-6 leading-tight" >
-              Building Communities,<br />Creating Impact
+            
+            <h1 className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+              Building Communities,<br />
+              <span style={{ color: '#DAB428' }}>Creating Impact</span>
             </h1>
-            <p className="text-lg lg:text-xl text-white/90 max-w-2xl leading-relaxed">
+            
+            <p className="text-lg lg:text-xl text-white/90 max-w-2xl leading-relaxed mb-10">
               A lifelong commitment to our communities, giving back and enriching lives across Cambodia.
             </p>
+            
+            {/* CTA Button */}
+            <motion.a
+              href="#initiatives"
+              whileHover={{ scale: 1.05, x: 8 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-3 px-8 py-4 text-white font-semibold text-base shadow-xl transition-all group relative overflow-hidden"
+              style={{ backgroundColor: '#A42A28' }}
+            >
+              <span className="absolute inset-0 w-0 bg-[#DAB428] transition-all duration-300 ease-out group-hover:w-full" />
+              <span className="relative">Explore Our Initiatives</span>
+              <motion.svg 
+                className="relative w-5 h-5"
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </motion.svg>
+            </motion.a>
           </motion.div>
         </div>
+        
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+          <span className="text-white/60 text-xs font-medium tracking-wider">SCROLL</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-2"
+          >
+            <motion.div 
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ backgroundColor: '#DAB428' }}
+            />
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* Our Commitment */}
+      {/* Our Commitment - Redesigned */}
       <AnimatedSection>
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-[1440px] px-6 lg:px-20">
+        <section className="py-24 lg:py-32 relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5" style={{ backgroundColor: '#DAB428', filter: 'blur(100px)' }} />
+          
+          <div className="relative mx-auto max-w-[1400px] px-6 lg:px-20">
             <FadeUp>
-              <div className="text-center mb-16">
-                <p className="text-sm font-semibold tracking-widest mb-2" style={{ color: '#B14240' }}>
-                  Our Commitment
+              <div className="text-center mb-20">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '80px' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="h-1 mx-auto mb-4"
+                  style={{ backgroundColor: '#DAB428' }}
+                />
+                <p className="text-sm font-semibold tracking-wider mb-3" style={{ color: '#A42A28' }}>
+                  OUR COMMITMENT
                 </p>
-                <h2 className="text-3xl lg:text-4xl font-semibold text-[#212721] max-w-3xl mx-auto">
-                  Corporate Social Responsibility at the Heart of Everything We Do
+                <h2 className="text-3xl lg:text-5xl font-bold text-[#212121] max-w-4xl mx-auto leading-tight">
+                  Corporate Social Responsibility at the Heart of 
+                  <span style={{ color: '#DAB428' }}> Everything We Do</span>
                 </h2>
               </div>
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <p className="text-base lg:text-lg text-black/60 text-center max-w-4xl mx-auto leading-relaxed mb-16">
+              <p className="text-base lg:text-lg text-gray-600 text-center max-w-4xl mx-auto leading-relaxed mb-20">
                 At OCIC, we believe that sustainable business success goes hand-in-hand with positive social impact. Our CSR initiatives reflect our deep commitment to the communities we serve, focusing on education, health, environmental protection, and economic empowerment across Cambodia.
               </p>
             </FadeUp>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {csrPillars.map((pillar, index) => {
                 const Icon = pillar.icon;
                 return (
                   <motion.div
                     key={pillar.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-                    className="p-6 rounded-xl border border-black/8 bg-[#F9F9F9] hover:shadow-lg transition-shadow"
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                    whileHover={{ 
+                      y: -8,
+                      transition: { duration: 0.3 }
+                    }}
+                    className="group relative p-8 rounded-2xl bg-white border-2 border-gray-100 hover:border-[#DAB428] shadow-lg hover:shadow-2xl transition-all duration-300"
                   >
-                    <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
-                      style={{ backgroundColor: '#B14240' }}
-                    >
-                      <Icon size={28} className="text-white" />
+                    {/* Background glow on hover */}
+                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" style={{ backgroundColor: '#DAB428' }} />
+                    
+                    <div className="relative">
+                      {/* Icon with animation */}
+                      <motion.div 
+                        className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden"
+                        style={{ backgroundColor: '#A42A28' }}
+                        whileHover={{ rotate: [0, -5, 5, -5, 0] }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {/* Shine effect */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30"
+                          initial={{ x: '-100%' }}
+                          whileHover={{ x: '100%' }}
+                          transition={{ duration: 0.6 }}
+                        />
+                        <Icon size={32} className="text-[#DAB428] relative z-10" strokeWidth={2.5} />
+                      </motion.div>
+                      
+                      <h3 className="text-lg font-bold text-[#212121] mb-3 group-hover:text-[#A42A28] transition-colors">
+                        {pillar.title}
+                      </h3>
+                      
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {pillar.description}
+                      </p>
+                      
+                      {/* Bottom accent line */}
+                      <motion.div 
+                        className="mt-6 h-1 rounded-full"
+                        style={{ backgroundColor: '#DAB428' }}
+                        initial={{ width: 0 }}
+                        whileInView={{ width: '40px' }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                      />
                     </div>
-                    <h3 className="text-lg font-semibold text-[#212721] mb-2">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-sm text-black/60 leading-relaxed">
-                      {pillar.description}
-                    </p>
                   </motion.div>
                 );
               })}
@@ -188,61 +309,105 @@ export default function CSR() {
         </section>
       </AnimatedSection>
 
-      {/* Major Initiatives */}
+      {/* Major Initiatives - Redesigned */}
       <AnimatedSection>
-        <section className="py-20 lg:py-28 bg-[#F5F3F3]">
-          <div className="mx-auto max-w-[1440px] px-6 lg:px-20">
+        <section id="initiatives" className="py-24 lg:py-32 relative" style={{ backgroundColor: '#F8F7F5' }}>
+          {/* Decorative background */}
+          <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-5" style={{ backgroundColor: '#A42A28', filter: 'blur(100px)' }} />
+          
+          <div className="relative mx-auto max-w-[1400px] px-6 lg:px-20">
             <FadeUp>
-              <div className="text-center mb-16">
-                <p className="text-sm font-semibold tracking-widest mb-2" style={{ color: '#B14240' }}>
-                  Our Initiatives
+              <div className="text-center mb-20">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '80px' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="h-1 mx-auto mb-4"
+                  style={{ backgroundColor: '#DAB428' }}
+                />
+                <p className="text-sm font-semibold tracking-wider mb-3" style={{ color: '#A42A28' }}>
+                  OUR INITIATIVES
                 </p>
-                <h2 className="text-3xl lg:text-4xl font-semibold text-[#212721]">
-                  Making a Difference
+                <h2 className="text-3xl lg:text-5xl font-bold text-[#212121]">
+                  Making a <span style={{ color: '#DAB428' }}>Lasting Difference</span>
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="space-y-20">
+            <div className="space-y-32">
               {initiatives.map((initiative, index) => (
                 <motion.div
                   key={initiative.title}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
-                    index % 2 === 1 ? 'lg:grid-flow-dense' : ''
-                  }`}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center`}
                 >
-                  <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                    <div className="overflow-hidden rounded-2xl shadow-xl">
+                  {/* Image */}
+                  <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.4 }}
+                      className="group relative overflow-hidden rounded-2xl shadow-2xl"
+                    >
+                      {/* Gold corner accent */}
+                      <div className="absolute top-0 left-0 w-20 h-20 z-10 pointer-events-none">
+                        <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: '#DAB428' }} />
+                        <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: '#DAB428' }} />
+                      </div>
+                      
                       <img
                         src={initiative.image}
                         alt={initiative.title}
-                        className="w-full h-[400px] object-cover"
+                        className="w-full h-[450px] lg:h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-700"
                       />
-                    </div>
+                      
+                      {/* Overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </motion.div>
                   </div>
 
-                  <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                    <h3 className="text-2xl lg:text-3xl font-semibold text-[#212721] mb-4">
-                      {initiative.title}
-                    </h3>
-                    <p className="text-base text-black/60 leading-relaxed mb-8">
-                      {initiative.description}
-                    </p>
+                  {/* Content */}
+                  <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+                    <motion.div
+                      initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                      <h3 className="text-2xl lg:text-4xl font-bold text-[#212121] mb-6 leading-tight">
+                        {initiative.title}
+                      </h3>
+                      
+                      <p className="text-base lg:text-lg text-gray-600 leading-relaxed mb-10">
+                        {initiative.description}
+                      </p>
 
-                    <div className="grid grid-cols-3 gap-4">
-                      {initiative.stats.map((stat) => (
-                        <div key={stat.label} className="text-center p-4 rounded-lg bg-white">
-                          <p className="text-2xl font-bold mb-1" style={{ color: '#B14240' }}>
-                            {stat.value}
-                          </p>
-                          <p className="text-xs text-black/50">{stat.label}</p>
-                        </div>
-                      ))}
-                    </div>
+                      {/* Stats */}
+                      <div className="grid grid-cols-3 gap-4">
+                        {initiative.stats.map((stat, statIndex) => (
+                          <motion.div
+                            key={stat.label}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.4 + statIndex * 0.1 }}
+                            whileHover={{ y: -4 }}
+                            className="group/stat relative text-center p-5 rounded-xl bg-white shadow-lg hover:shadow-xl transition-all border-2 border-transparent hover:border-[#DAB428]"
+                          >
+                            {/* Glow effect */}
+                            <div className="absolute inset-0 rounded-xl opacity-0 group-hover/stat:opacity-10 blur-xl transition-opacity" style={{ backgroundColor: '#DAB428' }} />
+                            
+                            <p className="relative text-3xl font-bold mb-2 bg-gradient-to-r from-[#A42A28] to-[#DAB428] bg-clip-text text-transparent">
+                              {stat.value}
+                            </p>
+                            <p className="relative text-xs text-gray-500 font-medium leading-tight">{stat.label}</p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
                   </div>
                 </motion.div>
               ))}
@@ -251,45 +416,85 @@ export default function CSR() {
         </section>
       </AnimatedSection>
 
-      {/* Impact Areas */}
+      {/* Impact Areas - Redesigned */}
       <AnimatedSection>
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-[1440px] px-6 lg:px-20">
+        <section className="py-24 lg:py-32 relative overflow-hidden">
+          {/* Background decorations */}
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5" style={{ backgroundColor: '#DAB428', filter: 'blur(100px)' }} />
+          <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-5" style={{ backgroundColor: '#A42A28', filter: 'blur(100px)' }} />
+          
+          <div className="relative mx-auto max-w-[1400px] px-6 lg:px-20">
             <FadeUp>
-              <div className="text-center mb-16">
-                <p className="text-sm font-semibold tracking-widest mb-2" style={{ color: '#B14240' }}>
-                  Areas of Impact
+              <div className="text-center mb-20">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '80px' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="h-1 mx-auto mb-4"
+                  style={{ backgroundColor: '#DAB428' }}
+                />
+                <p className="text-sm font-semibold tracking-wider mb-3" style={{ color: '#A42A28' }}>
+                  AREAS OF IMPACT
                 </p>
-                <h2 className="text-3xl lg:text-4xl font-semibold text-[#212721]">
-                  Creating Sustainable Change
+                <h2 className="text-3xl lg:text-5xl font-bold text-[#212121]">
+                  Creating <span style={{ color: '#DAB428' }}>Sustainable Change</span>
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {impactAreas.map((area, index) => {
                 const Icon = area.icon;
                 return (
                   <motion.div
                     key={area.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-                    className="p-8 rounded-2xl border border-black/8 bg-white hover:shadow-lg transition-all group"
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.15,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    className="group relative p-10 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all border-2 border-gray-100 hover:border-[#DAB428]"
                   >
-                    <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-transform group-hover:scale-110"
-                      style={{ backgroundColor: area.color }}
-                    >
-                      <Icon size={32} className="text-white" />
+                    {/* Background gradient on hover */}
+                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500" style={{ backgroundColor: area.color }} />
+                    
+                    <div className="relative flex items-start gap-6">
+                      {/* Icon */}
+                      <motion.div
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                        className="flex-shrink-0 w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg"
+                        style={{ backgroundColor: area.color }}
+                      >
+                        <Icon size={36} className="text-white" strokeWidth={2.5} />
+                      </motion.div>
+                      
+                      {/* Content */}
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-[#212121] mb-3 group-hover:text-[#A42A28] transition-colors">
+                          {area.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {area.description}
+                        </p>
+                        
+                        {/* Animated underline */}
+                        <motion.div 
+                          className="mt-5 h-1 rounded-full"
+                          style={{ backgroundColor: area.color }}
+                          initial={{ width: 0 }}
+                          whileInView={{ width: '60px' }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.15 + 0.3 }}
+                        />
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-[#212721] mb-3">
-                      {area.title}
-                    </h3>
-                    <p className="text-sm text-black/60 leading-relaxed">
-                      {area.description}
-                    </p>
                   </motion.div>
                 );
               })}
@@ -408,7 +613,7 @@ export default function CSR() {
               >
                 <div className="overflow-hidden">
                   <img
-                    src={educationImage}
+                    src={schoolevent}
                     alt="OCIC Group and KPCC"
                     className="w-full h-56 object-cover hover:scale-105 transition-transform duration-300"
                   />
