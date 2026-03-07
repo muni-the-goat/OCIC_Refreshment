@@ -3,8 +3,8 @@ import { AnimatedSection } from "../components/AnimatedSection";
 import { ArrowRight, Quote } from "lucide-react";
 
 // Hero & Chairman
-import canadiaTowerHeader from "../../assets/About-Page/canadia-tower-header.png";
-import chairmanImg from "../../assets/About-Page/pung_kheav_se_ocic.jpg";
+import canadiaTowerHeader from "../../assets/About-Page/canadia-tower-header.jpg";
+import chairmanImg from "../../assets/About-Page/pung_kheav_se_ocic.webp";
 
 // Timeline images
 import soriya from "../../assets/About-Page/soriya.png";

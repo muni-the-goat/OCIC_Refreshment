@@ -9,8 +9,7 @@ const navItems = [
   { label: "Sectors", to: "/sectors" },
   { label: "CSR", to: "/csr" },
   { label: "Newsroom", to: "/news-media" },
-  { label: "Careers", to: "/Careers" },
-  { label: "Contact", to: "/Contact" },
+  { label: "Careers", to: "/Careers" }
 ];
 
 const sectorItems = [
