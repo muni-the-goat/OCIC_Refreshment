@@ -550,7 +550,7 @@ export default function Contact() {
               </div>
 
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.7475651672896!2d104.91731131477986!3d11.569370191814838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDM0JzA5LjciTiAxMDTCsDU1JzA5LjYiRQ!5e0!3m2!1sen!2skh!4v1234567890123!5m2!1sen!2skh"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.7165964919236!2d104.9181832!3d11.5721628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109514232b8ea4d%3A0x79aebbe18ec5854c!2sCanadia%20Tower!5e0!3m2!1sen!2skh!4v1772897739814!5m2!1sen!2skh"
                 width="100%"
                 height="500"
                 style={{ border: 0, display: "block" }}

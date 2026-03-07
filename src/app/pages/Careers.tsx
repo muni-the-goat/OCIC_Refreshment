@@ -101,151 +101,161 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 export default function Careers() {
   return (
     <div className="bg-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image with Parallax */}
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5 }}
-          className="absolute inset-0"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('${hero}')` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/60" />
-        </motion.div>
+      {/* Hero Section - Split Screen Design (Completely Different from Homepage) */}
+      <section className="relative min-h-screen flex items-stretch overflow-hidden">
+        
+        {/* Left Side - Content on Solid Color Background */}
+        <div className="relative w-full lg:w-1/2 flex items-center" style={{ backgroundColor: '#A42A28' }}>
+          {/* Geometric pattern overlay */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                radial-gradient(circle at 20% 50%, transparent 20%, #DAB428 21%, #DAB428 23%, transparent 24%),
+                radial-gradient(circle at 80% 80%, transparent 20%, #DAB428 21%, #DAB428 23%, transparent 24%)
+              `,
+              backgroundSize: '100px 100px'
+            }} />
+          </div>
 
-        {/* Animated Decorative Elements */}
-        <div className="absolute top-0 left-0 w-40 h-40">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#DAB428] to-transparent"
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#DAB428] to-transparent"
-          />
-        </div>
+          {/* Animated diagonal lines */}
+          <div className="absolute inset-0 overflow-hidden opacity-5">
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute h-full w-1"
+                style={{
+                  backgroundColor: '#DAB428',
+                  left: `${i * 10}%`,
+                  transform: 'skewX(-20deg)',
+                }}
+                animate={{
+                  opacity: [0.05, 0.15, 0.05],
+                }}
+                transition={{
+                  duration: 3 + i * 0.2,
+                  repeat: Infinity,
+                  delay: i * 0.3,
+                }}
+              />
+            ))}
+          </div>
 
-        {/* Floating particles effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 rounded-full"
-              style={{
-                backgroundColor: i % 2 === 0 ? '#DAB428' : '#A42A28',
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: 0.1,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.1, 0.3, 0.1],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-20 py-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
+          <div className="relative z-10 px-6 lg:px-16 xl:px-20 py-20 w-full">
             <motion.div
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {/* Label */}
+              {/* Career opportunities badge */}
               <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: '80px' }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="h-1 mb-6"
-                style={{ backgroundColor: '#DAB428' }}
-              />
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="inline-flex items-center gap-3 px-5 py-3 rounded-full mb-8 border-2 border-white/30 backdrop-blur-sm"
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <Briefcase size={20} className="text-[#DAB428]" strokeWidth={2.5} />
+                </motion.div>
+                <span className="text-sm font-bold tracking-wider text-white">CAREER OPPORTUNITIES</span>
+              </motion.div>
 
-              <p className="text-sm font-bold tracking-widest text-[#DAB428] uppercase mb-6">
-                JOIN OUR TEAM
-              </p>
-
-              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
-                Build Your Future<br />
-                <span style={{ color: '#DAB428' }}>with OCIC</span>
+              <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight">
+                Your Career,<br />
+                Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DAB428] to-[#F4C542]">Impact</span>
               </h1>
 
-              <p className="text-lg lg:text-xl text-white/90 leading-relaxed mb-10 max-w-xl">
-                Join Cambodia's leading integrated conglomerate and be part of transformative projects that shape the nation's future.
+              <p className="text-lg text-white/90 leading-relaxed mb-10 max-w-lg">
+                Join a team that's building Cambodia's future. Discover meaningful careers across 12 diverse sectors.
               </p>
+
+              {/* Quick stats */}
+              <div className="grid grid-cols-2 gap-6 mb-10">
+                {[
+                  { number: '5000+', label: 'Team Members' },
+                  { number: '12', label: 'Business Sectors' },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                    className="border-l-4 border-[#DAB428] pl-4"
+                  >
+                    <p className="text-3xl lg:text-4xl font-bold text-[#DAB428] mb-1">
+                      {stat.number}
+                    </p>
+                    <p className="text-sm text-white/70 font-medium">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
                   href="#open-positions"
-                  whileHover={{ scale: 1.05, x: 5 }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 text-white font-bold text-base shadow-xl transition-all relative overflow-hidden"
-                  style={{ backgroundColor: '#A42A28' }}
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#DAB428] text-[#0A0E27] font-bold text-base rounded-full shadow-xl transition-all"
                 >
-                  <span className="absolute inset-0 w-0 bg-[#DAB428] transition-all duration-300 ease-out group-hover:w-full" />
-                  <span className="relative">View Open Positions</span>
-                  <ChevronRight size={20} className="relative group-hover:translate-x-1 transition-transform" />
+                  <span>Explore Opportunities</span>
+                  <ChevronRight size={20} strokeWidth={3} />
                 </motion.a>
 
                 <motion.a
                   href="#why-ocic"
-                  whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+                  whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold text-base border-2 border-white transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold text-base border-2 border-white rounded-full transition-all"
                 >
-                  Learn More
+                  Why OCIC?
                 </motion.a>
               </div>
-            </motion.div>
-
-            {/* Right Stats Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="hidden lg:block"
-            >
             </motion.div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        >
-          <span className="text-white/60 text-xs font-medium tracking-wider">EXPLORE</span>
+        {/* Right Side - Image Showcase */}
+        <div className="hidden lg:block lg:w-1/2 relative">
+          {/* Main image */}
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-2"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2 }}
+            className="absolute inset-0"
           >
-            <motion.div
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ backgroundColor: '#DAB428' }}
+            <img
+              src={career}
+              alt="OCIC Team"
+              className="w-full h-full object-cover"
             />
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#A42A28]/40 to-transparent" />
           </motion.div>
-        </motion.div>
+
+          {/* Scroll indicator - vertical */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="absolute bottom-10 right-10 flex flex-col items-center gap-3"
+          >
+            <span className="text-white text-xs font-bold tracking-[0.2em] [writing-mode:vertical-lr]">SCROLL</span>
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <ChevronRight size={24} className="text-[#DAB428] rotate-90" strokeWidth={3} />
+            </motion.div>
+          </motion.div>
+        </div>
+
       </section>
 
-      {/* Why Join OCIC */}
+      {/* Why Join OCIC - Redesigned */}
       <AnimatedSection>
         <section id="why-ocic" className="py-24 lg:py-32 relative overflow-hidden">
           {/* Background decoration */}

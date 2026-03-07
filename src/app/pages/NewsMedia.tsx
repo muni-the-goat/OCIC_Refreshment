@@ -116,281 +116,180 @@ export default function NewsMedia() {
   return (
     <div className="bg-white" style={{ fontFamily: "Poppins, sans-serif" }}>
 
-      {/* ── Hero Section ─────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-
-        {/* Background — featured image with dark overlay */}
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5 }}
-          className="absolute inset-0"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('${newsroomHero}')` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/50" />
-        </motion.div>
-
-        {/* Gold corner accent */}
-        <div className="absolute top-0 left-0 w-40 h-40">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#DAB428] to-transparent"
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#DAB428] to-transparent"
-          />
+      {/* ── Hero Section - Newsroom Style (Completely Different from Homepage) ─────────────────────────────────────────────── */}
+      <section className="relative bg-[#0A0E27] overflow-hidden">
+        {/* Animated grid background */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(#DAB428 1px, transparent 1px),
+              linear-gradient(90deg, #DAB428 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }} />
         </div>
 
-        {/* Floating particles */}
+        {/* Diagonal accent stripes */}
+        <div className="absolute inset-0 overflow-hidden opacity-5">
+          <div className="absolute -inset-full">
+            <div className="w-full h-full" style={{
+              background: `repeating-linear-gradient(
+                45deg,
+                #DAB428,
+                #DAB428 2px,
+                transparent 2px,
+                transparent 20px
+              )`
+            }} />
+          </div>
+        </div>
+
+        {/* Floating news icons animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 rounded-full"
+              className="absolute"
               style={{
-                backgroundColor: i % 2 === 0 ? "#DAB428" : "#A42A28",
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                opacity: 0.1,
               }}
-              animate={{ y: [0, -30, 0], opacity: [0.1, 0.3, 0.1] }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.05, 0.15, 0.05],
+                rotate: [0, 360]
+              }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 8 + Math.random() * 4,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: Math.random() * 3,
               }}
-            />
+            >
+              <Newspaper size={40 + Math.random() * 20} className="text-[#DAB428]" />
+            </motion.div>
           ))}
         </div>
 
-        <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-20 py-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-            {/* Left copy */}
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-20 py-32">
+          {/* Breaking News Ticker Style Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            <div className="flex items-center gap-4 mb-8">
               <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "80px" }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="h-1 mb-6"
-                style={{ backgroundColor: "#DAB428" }}
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-3 h-3 rounded-full"
+                style={{ backgroundColor: '#DAB428' }}
               />
-              <p className="text-sm font-bold tracking-widest text-[#DAB428] uppercase mb-6">
-                NEWS & MEDIA
-              </p>
-              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
-                Stay in the<br />
-                <span style={{ color: "#DAB428" }}>Know</span>
-              </h1>
-              <p className="text-lg lg:text-xl text-white/90 leading-relaxed mb-10 max-w-xl">
-                The latest news, press releases, and stories from across OCIC's portfolio — shaping Cambodia's future, one headline at a time.
-              </p>
+              <span className="text-xs font-bold tracking-[0.3em] text-[#DAB428] uppercase">
+                News & Media
+              </span>
+              <div className="flex-1 h-px bg-gradient-to-r from-[#DAB428] to-transparent" />
+            </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <motion.a
-                  href="#latest-news"
-                  whileHover={{ scale: 1.05, x: 5 }}
+            <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+              Stay in the<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DAB428] via-[#F4C542] to-[#DAB428]">
+                News
+              </span>
+            </h1>
+
+            <p className="text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed">
+              The latest news, press releases, and stories from across OCIC's portfolio — shaping Cambodia's future, one headline at a time.
+            </p>
+          </motion.div>
+
+          {/* Search Bar & Categories - Integrated in Hero */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8"
+          >
+            {/* Search Input */}
+            <div className="relative mb-6">
+              <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60" />
+              <input
+                type="text"
+                placeholder="Search news, press releases, stories..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-[#DAB428] transition-colors"
+              />
+            </div>
+
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap gap-3">
+              {categories.map((category) => (
+                <motion.button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 text-white font-bold text-base shadow-xl transition-all relative overflow-hidden"
-                  style={{ backgroundColor: "#A42A28" }}
+                  className={`
+                    px-6 py-3 rounded-full font-semibold text-sm transition-all
+                    ${selectedCategory === category
+                      ? 'bg-[#DAB428] text-[#0A0E27] shadow-lg shadow-[#DAB428]/30'
+                      : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+                    }
+                  `}
                 >
-                  <span className="absolute inset-0 w-0 bg-[#DAB428] transition-all duration-300 ease-out group-hover:w-full" />
-                  <span className="relative">Browse All Stories</span>
-                  <ChevronRight size={20} className="relative group-hover:translate-x-1 transition-transform" />
-                </motion.a>
-                <motion.a
-                  href="#featured"
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold text-base border-2 border-white transition-all"
-                >
-                  Featured Story
-                </motion.a>
-              </div>
-            </motion.div>
-          </div>
+                  {category}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Quick Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-wrap gap-4 mt-8"
+          >
+            <motion.a
+              href="#featured"
+              whileHover={{ scale: 1.05, x: 5 }}
+              whileTap={{ scale: 0.98 }}
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-[#A42A28] text-white font-bold rounded-full shadow-xl transition-all relative overflow-hidden"
+            >
+              <span className="absolute inset-0 w-0 bg-[#DAB428] transition-all duration-300 group-hover:w-full" />
+              <span className="relative">Browse All Stories</span>
+              <ChevronRight size={20} className="relative group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+
+            <motion.a
+              href="#featured"
+              whileHover={{ scale: 1.05, backgroundColor: 'rgba(218, 180, 40, 0.2)' }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white text-white font-bold rounded-full transition-all"
+            >
+              Featured Story
+            </motion.a>
+          </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll Indicator - Different Style */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          transition={{ delay: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
-          <span className="text-white/60 text-xs font-medium tracking-wider">EXPLORE</span>
+          <span className="text-white/60 text-xs font-bold tracking-[0.2em]">EXPLORE</span>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
+            animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-2"
+            className="flex flex-col gap-1"
           >
-            <motion.div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#DAB428" }} />
+            <ChevronRight size={20} className="text-[#DAB428] rotate-90" />
           </motion.div>
         </motion.div>
       </section>
-
-      {/* ── Featured Article ──────────────────────────────────────────── */}
-      <AnimatedSection>
-        <section id="featured" className="py-24 lg:py-32 relative overflow-hidden scroll-mt-20">
-          {/* Background blobs */}
-          <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5" style={{ backgroundColor: "#DAB428", filter: "blur(100px)" }} />
-          <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-5" style={{ backgroundColor: "#A42A28", filter: "blur(100px)" }} />
-
-          <div className="relative mx-auto max-w-[1400px] px-6 lg:px-20">
-            <FadeUp>
-              <div className="text-center mb-20">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "80px" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="h-1 mx-auto mb-4"
-                  style={{ backgroundColor: "#DAB428" }}
-                />
-                <p className="text-sm font-bold tracking-wider mb-3" style={{ color: "#A42A28" }}>
-                  TOP STORY
-                </p>
-                <h2 className="text-3xl lg:text-5xl font-bold text-[#212121]">
-                  Featured <span style={{ color: "#DAB428" }}>Article</span>
-                </h2>
-              </div>
-            </FadeUp>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, type: "spring", stiffness: 80 }}
-              className="group cursor-pointer"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-2 items-center bg-white border-2 border-gray-100 hover:border-[#DAB428] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
-
-                {/* Image */}
-                <div className="relative h-[400px] lg:h-[520px] overflow-hidden">
-                  {/* Gold corner accent */}
-                  <div className="absolute top-0 left-0 w-16 h-16 z-10 pointer-events-none">
-                    <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: "#DAB428" }} />
-                    <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: "#DAB428" }} />
-                  </div>
-                  <img
-                    src={featuredNews.image}
-                    alt={featuredNews.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute top-6 left-6 z-10">
-                    <span
-                      className="inline-block px-4 py-2 rounded-full text-xs font-bold text-white"
-                      style={{ backgroundColor: "#A42A28" }}
-                    >
-                      FEATURED
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 lg:p-12">
-                  <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#A42A28" }}>
-                    {featuredNews.category}
-                  </span>
-
-                  <h3 className="text-2xl lg:text-3xl font-bold text-[#212121] mt-4 mb-5 leading-tight group-hover:text-[#A42A28] transition-colors">
-                    {featuredNews.title}
-                  </h3>
-
-                  <p className="text-base text-gray-600 leading-relaxed mb-6">
-                    {featuredNews.description}
-                  </p>
-
-                  <div className="flex items-center gap-6 text-sm text-black/50 mb-8">
-                    <div className="flex items-center gap-2">
-                      <Calendar size={15} />
-                      <span>{featuredNews.date}</span>
-                    </div>
-                    <span>•</span>
-                    <span>{featuredNews.readTime}</span>
-                  </div>
-
-                  {/* Gold accent line */}
-                  <motion.div
-                    className="mb-6 h-1 rounded-full"
-                    style={{ backgroundColor: "#DAB428" }}
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "40px" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                  />
-
-                  <motion.button
-                    whileHover={{ scale: 1.05, x: 5 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-white shadow-lg overflow-hidden"
-                    style={{ backgroundColor: "#A42A28" }}
-                  >
-                    <span className="absolute inset-0 w-0 bg-[#DAB428] transition-all duration-300 ease-out group-hover/btn:w-full" />
-                    <span className="relative">Read Full Story</span>
-                    <ArrowRight size={18} className="relative group-hover/btn:translate-x-1 transition-transform" />
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* ── Filter & Search ───────────────────────────────────────────── */}
-      <AnimatedSection>
-        <section id="latest-news" className="py-10 scroll-mt-20" style={{ backgroundColor: "#F8F7F5" }}>
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-20">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-
-              {/* Category pills */}
-              <div className="flex flex-wrap gap-3">
-                {categories.map((category) => (
-                  <motion.button
-                    key={category}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
-                      selectedCategory === category
-                        ? "text-white shadow-md"
-                        : "text-black/60 bg-white border-2 border-gray-100 hover:border-[#DAB428]"
-                    }`}
-                    style={selectedCategory === category ? { backgroundColor: "#A42A28" } : {}}
-                  >
-                    {category}
-                  </motion.button>
-                ))}
-              </div>
-
-              {/* Search */}
-              <div className="relative w-full lg:w-auto">
-                <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-black/40" />
-                <input
-                  type="text"
-                  placeholder="Search news..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full lg:w-80 pl-11 pr-5 py-3 rounded-full border-2 border-gray-100 bg-white focus:border-[#DAB428] focus:outline-none focus:ring-2 focus:ring-[#DAB428]/20 transition-all text-sm"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
 
       {/* ── News Grid ─────────────────────────────────────────────────── */}
       <AnimatedSection>
